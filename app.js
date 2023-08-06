@@ -14,8 +14,8 @@ document.addEventListener("DOMContentLoaded", ()=> {
   fetch('https://restcountries.com/v3.1/all')
     .then((res) => res.json())
     .then((data) => {
-      renderCountries(data)
-      allCountriesData = data
+      renderCountries(data);
+      allCountriesData = data;
     })
   
   //  Filtering countries by region add additon of event listener
@@ -29,11 +29,11 @@ document.addEventListener("DOMContentLoaded", ()=> {
   // render countries data function
   
   function renderCountries(data) {
-    countriesContainer.innerHTML = ''
+    countriesContainer.innerHTML = '';
     data.forEach((country) => {
-      const countryCard = document.createElement('a')
-      countryCard.classList.add('country-card')
-      countryCard.href = `/detail.html?name=${country.name.common}`
+      const countryCard = document.createElement('a');
+      countryCard.classList.add('country-card');
+      countryCard.href = `/detail.html?name=${country.name.common}`;
       countryCard.innerHTML = `
             <img src="${country.flags.svg}" alt="${country.name.common} flag" />
             <div class="card-text">
@@ -44,19 +44,19 @@ document.addEventListener("DOMContentLoaded", ()=> {
                 <p><b>Region: </b>${country.region}</p>
                 <p><b>Capital: </b>${country.capital?.[0]}</p>
             </div>
-    `
-      countriesContainer.append(countryCard)
+    `;
+      countriesContainer.append(countryCard);
     })
   }
   
   
   searchInput.addEventListener('input',  (e) => {
-    const filteredCountries = allCountriesData.filter((country) => country.name.common.toLowerCase().includes(e.target.value.toLowerCase()))
-    renderCountries(filteredCountries)
+    const filteredCountries = allCountriesData.filter((country) => country.name.common.toLowerCase().includes(e.target.value.toLowerCase()));
+    renderCountries(filteredCountries);
   })
   
   themeChanger.addEventListener('click', () => {
-    document.body.classList.toggle('dark')
+    document.body.classList.toggle('dark');
   })
   
   })
